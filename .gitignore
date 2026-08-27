@@ -1,0 +1,17 @@
+# Generated from project.yml -- regenerate with `xcodegen generate`
+Ascend.xcodeproj/
+
+# Machine-local signing identity
+Local.xcconfig
+
+.DS_Store
+build/
+DerivedData/
+.swiftpm/
+Packages/*/.build/
+*.xcuserstate
+xcuserdata/
+
+# Agent tooling litter, not project files
+.claude-flow/
+.swarm/
