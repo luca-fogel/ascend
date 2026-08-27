@@ -26,6 +26,7 @@ let package = Package(
         .library(name: "AscendPersistence", targets: ["AscendPersistence"]),
         .library(name: "AscendIntelligence", targets: ["AscendIntelligence"]),
         .executable(name: "ascend-eval", targets: ["ascend-eval"]),
+        .executable(name: "ascend-icon", targets: ["ascend-icon"]),
     ],
     targets: [
         .target(name: "AscendDomain"),
@@ -50,6 +51,13 @@ let package = Package(
         // generic, with no way to tell whether a prompt edit helped. This harness closes that
         // loop on any Mac with Apple Intelligence enabled.
         .executableTarget(name: "ascend-eval", dependencies: ["AscendDomain", "AscendIntelligence"]),
+
+        // Renders the app icon from the same Palette the app draws itself with.
+        //
+        // An icon committed as a bare PNG is a design decision nobody can review or re-derive.
+        // This way the colours are provably the app's own -- if the accent hue changes, the icon
+        // changes with it -- and the geometry is readable as code.
+        .executableTarget(name: "ascend-icon", dependencies: ["AscendDomain"]),
 
         .testTarget(name: "AscendDomainTests", dependencies: ["AscendDomain"]),
         .testTarget(

@@ -16,6 +16,9 @@ xcodegen generate && open Ascend.xcodeproj      # then ⌘R
 For a screenshot or a look at one screen without walking the UI, debug builds take
 `-tab today|goals|bosses|character|settings` and `-sheet goal|habit`.
 
+`tools/make-icon.sh` regenerates the app icon from `Palette`. The PNGs are committed, so run it
+and commit the result if you change a brand colour.
+
 If you have a Mac with Apple Intelligence enabled, `swift run --package-path
 Packages/AscendCore ascend-eval` runs the real on-device planner and scores its output. Pass
 `--runs 3` before believing any result — see the note on variance below.

@@ -106,6 +106,15 @@ in [docs/DESIGN.md](docs/DESIGN.md).
   <img src="docs/images/today.png" width="45%" alt="The Today screen">
 </p>
 
+<p align="center">
+  <img src="docs/images/icon.png" width="128" alt="The Ascend app icon">
+</p>
+
+The icon is generated too — `tools/make-icon.sh` draws it from the same `Palette` the app uses, so
+it cannot drift from the interface it represents. It is the progress ring from the character
+screen, opened at the top with a chevron rising through the gap, and it was sized for 40pt rather
+than 1024. Details in [docs/DESIGN.md](docs/DESIGN.md).
+
 ## Architecture
 
 ```

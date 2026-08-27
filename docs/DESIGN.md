@@ -93,6 +93,36 @@ which is a confusing thing to put in a form.
 | Icons in containers for hero slots | RUI p208 — an icon drawn for 16–24pt reads chunky blown up to 40pt. |
 | Icons softened next to text | RUI p56 "Balance weight and contrast" — a solid glyph covers more surface area than the text beside it. |
 
+## The app icon
+
+Generated, not drawn: `Sources/ascend-icon` renders it from `Palette`, so it cannot drift from
+the interface it represents — change the accent hue and the icon changes with it. Regenerate with
+`tools/make-icon.sh`.
+
+The mark is the app's own signature: the progress ring from the character screen, opened at the
+top, with a chevron rising through the gap. Ring for progress, chevron for ascent — and it happens
+to read as an **A**, which was luck rather than design.
+
+Everything about it is sized for 40pt, not 1024. RUI p213 makes the point about favicons:
+shrinking a detailed mark turns it to mush, so the compromises have to be chosen deliberately.
+That meant thick strokes, one idea, and dropping two things that looked good at full size and
+disappeared at icon size — a gradient inside the chevron and a dot on the ring terminus. Verified
+on a contact sheet at 180/120/87/60/40pt before being committed.
+
+Three things in the renderer are worth knowing, because each was a bug first:
+
+- **Light and dark are written without an alpha channel.** App Store validation rejects a primary
+  iOS icon that carries one, and a context created as RGBA writes alpha into the PNG even when
+  every pixel is painted opaque. `tools/make-icon.sh` checks this, because the failure otherwise
+  arrives at upload time rather than at build time. Only the tinted variant keeps alpha, which it
+  needs so the system can composite its own plate behind.
+- **CoreGraphics bitmap contexts have y increasing upward**, so `-90` degrees points *down*.
+  Writing the ring's gap at `-90` put it at the bottom and left the chevron sitting inside a
+  closed horseshoe instead of breaking out of it.
+- **Gradients need `.drawsBeforeStartLocation` and `.drawsAfterEndLocation`.** Without them the
+  area past the end stop is never painted and composites as pure black, which showed up as a hard
+  diagonal edge across one corner.
+
 ## Where the books disagree
 
 UIDP p117 says shadows belong only on **interactive** elements. RUI uses them freely to convey
