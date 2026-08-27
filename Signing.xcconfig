@@ -1,0 +1,12 @@
+// Tracked. Local.xcconfig is not.
+//
+// The optional include is what lets a fresh clone build for the simulator with no team ID at
+// all: signing is only needed for a device build, and a checked-in DEVELOPMENT_TEAM would be
+// wrong for everyone but one machine.
+//
+// To build on a device, create Local.xcconfig next to this file containing:
+//   DEVELOPMENT_TEAM = YOURTEAMID
+#include? "Local.xcconfig"
+
+CODE_SIGN_STYLE = Automatic
+CODE_SIGNING_ALLOWED[sdk=iphonesimulator*] = NO
