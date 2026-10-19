@@ -29,7 +29,7 @@ struct AscendApp: App {
         } catch {
             // Surfaced in Settings rather than as an alert on launch: a rollover failure is
             // not something the user can act on mid-tap.
-            print("Ascend: startup failed -- \(error)")
+            container.recordStartupError(error)
         }
     }
 }
