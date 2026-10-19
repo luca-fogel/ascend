@@ -1,6 +1,6 @@
 # Ascend
 
-[![CI](https://github.com/foggylulu/ascend/actions/workflows/ci.yml/badge.svg)](https://github.com/foggylulu/ascend/actions/workflows/ci.yml)
+[![CI](https://github.com/luca-fogel/ascend/actions/workflows/ci.yml/badge.svg)](https://github.com/luca-fogel/ascend/actions/workflows/ci.yml)
 
 A gamified goal tracker that turns an ambition into a roadmap, then pays you in XP for walking it.
 
@@ -21,6 +21,10 @@ no account, no server, no API key.
 > On anything else — or with Apple Intelligence switched off, or still downloading — the app stays
 > fully usable and roadmaps come from a deterministic template planner. That fallback ships; it
 > is not a stub.
+
+
+> **Identity.** The GitHub repository lives under `luca-fogel`. The iOS bundle identifier remains `com.foggylulu.Ascend` (historical handle). Bundle IDs are not renamed here; only public GitHub URLs are canonicalized to `luca-fogel`.
+
 
 It began as the obvious mash-up: Goalz's AI goal decomposition with Habitica's RPG progression.
 The interesting problems turned out to be somewhere else entirely — **how do you make a small

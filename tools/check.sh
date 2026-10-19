@@ -43,7 +43,7 @@ CORE=Packages/AscendCore/Sources
 
 # (a) No networking and no credentials, anywhere. "Apple Intelligence only, no API keys" stops
 #     being a claim in a README and becomes a build failure.
-FORBIDDEN='URLSession|URLRequest|api\.anthropic|x-api-key|ANTHROPIC_API_KEY|SecItemAdd|CFStreamCreatePair'
+FORBIDDEN='URLSession|URLRequest|NWConnection|api\.anthropic|api\.openai|x-api-key|Authorization:[[:space:]]*Bearer|ANTHROPIC_API_KEY|OPENAI_API_KEY|apiKey[[:space:]]*=|SecItemAdd|CFStreamCreatePair'
 # Comment lines are stripped before matching: several files *document* the fact that they must
 # never use URLSession, and a guard that trips on its own explanation is a guard that gets
 # deleted. `grep -n` emits `path:line:text`, so dropping matches whose text begins with // or *

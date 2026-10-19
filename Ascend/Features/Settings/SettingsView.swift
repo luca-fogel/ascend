@@ -33,6 +33,23 @@ struct SettingsView: View {
                     }
                 }
 
+                if let startupError = container?.lastStartupError {
+                    Section("Startup") {
+                        VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                            Label("Day rollover did not finish", systemImage: "exclamationmark.triangle.fill")
+                                .font(Theme.Fonts.bodyEmphasis)
+                                .foregroundStyle(Theme.Colors.hp)
+                            Text(startupError)
+                                .font(Theme.Fonts.caption)
+                                .foregroundStyle(Theme.Colors.secondaryText)
+                            Button("Dismiss") {
+                                container?.clearStartupError()
+                            }
+                            .font(Theme.Fonts.caption)
+                        }
+                    }
+                }
+
                 Section {
                     Label("Nothing leaves this device", systemImage: "lock.shield")
                         .font(Theme.Fonts.bodyEmphasis)

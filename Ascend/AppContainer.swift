@@ -29,6 +29,8 @@ final class AppContainer {
     let templateService: any AIRoadmapService = TemplateRoadmapService()
     /// Non-nil when Apple Intelligence is unavailable, already phrased for display.
     private(set) var aiUnavailableReason: AscendError?
+    /// Non-nil when seed/rollover failed at launch or on foreground; shown in Settings.
+    private(set) var lastStartupError: String?
 
     init(modelContainer: ModelContainer,
          engine: any GameEngine,
@@ -36,6 +38,16 @@ final class AppContainer {
         self.modelContainer = modelContainer
         self.engine = engine
         self.roadmapService = roadmapService
+    }
+
+    @MainActor
+    func recordStartupError(_ error: Error) {
+        lastStartupError = String(describing: error)
+    }
+
+    @MainActor
+    func clearStartupError() {
+        lastStartupError = nil
     }
 
     /// Builds the production graph.
